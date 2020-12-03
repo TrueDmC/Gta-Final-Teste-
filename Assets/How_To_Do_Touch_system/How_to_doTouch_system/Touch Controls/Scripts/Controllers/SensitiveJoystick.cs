@@ -7,7 +7,7 @@ namespace How_To_Do
     
     public class SensitiveJoystick : SimpleJoystick
     {
-        public CarController carromovimento;
+        public CarController carmove;
 
         public AnimationCurve SensitivityCurve = new AnimationCurve(
             new Keyframe(0f, 0f, 1f, 1f),
@@ -27,7 +27,7 @@ namespace How_To_Do
             HorizintalAxis.Value = horizontalSign * SensitivityCurve.Evaluate(horizontalSign * linearHorizontalValue);
             VerticalAxis.Value = verticalSign * SensitivityCurve.Evaluate(verticalSign * linearVecticalValue);
 
-            carromovimento.Move(HorizintalAxis.Value, VerticalAxis.Value, 0, 0);
+            carmove.Move(HorizintalAxis.Value, VerticalAxis.Value, 0, 0);
         }
     }
 }
