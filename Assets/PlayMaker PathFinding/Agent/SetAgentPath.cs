@@ -70,30 +70,47 @@ namespace HutongGames.PlayMaker.Actions
 		}
 		
 		void DoSetPath()
-		{
-          
+        {
+
             if (_pathProxy == null || _agent == null)
 
             {
-				return;
-			}
+                return;
+            }
 
-            bool _ok = _agent.SetPath(_pathProxy.path);
-			
-			pathAssigned.Value = _ok;
-			
-			if (_ok)
-			{
-				if ( ! FsmEvent.IsNullOrEmpty(pathAssignedEvent) ){
-					Fsm.Event(pathAssignedEvent);
-				}
-			}else
-			{
-				if (! FsmEvent.IsNullOrEmpty(pathNotAssignedEvent) ){
-					Fsm.Event(pathNotAssignedEvent);
-				}
-			}
-		}
+            bool _ok = NewMethod();
 
-	}
+            pathAssigned.Value = _ok;
+
+            if (_ok)
+            {
+                if (!FsmEvent.IsNullOrEmpty(pathAssignedEvent))
+                {
+                    Fsm.Event(pathAssignedEvent);
+                }
+            }
+            else
+            {
+                if (!FsmEvent.IsNullOrEmpty(pathNotAssignedEvent))
+                {
+                    Fsm.Event(pathNotAssignedEvent);
+                }
+            }
+        }
+
+        private bool NewMethod()
+        {
+            return NewMethod1();
+        }
+
+        private bool NewMethod1()
+        {
+            return NewMethod2();
+        }
+
+        private bool NewMethod2()
+        {
+            return _agent.SetPath(_pathProxy.path);
+        }
+    }
 }
